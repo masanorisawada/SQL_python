@@ -1,0 +1,182 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- Name: data_spot; Type: TABLE; Schema: public; Owner: sawda
+--
+
+CREATE TABLE public.data_spot (
+    spot_id integer NOT NULL,
+    spot_area text,
+    spot_name text,
+    spot_latitude text,
+    spot_longitude text,
+    spot_history_culture integer,
+    spot_nature integer,
+    spot_view integer,
+    spot_1_high_temperature integer,
+    spot_1_low_temperature integer,
+    spot_opentime integer,
+    spot_closetime integer
+);
+
+
+ALTER TABLE public.data_spot OWNER TO sawda;
+
+--
+-- Name: data_spot_impr; Type: TABLE; Schema: public; Owner: sawda
+--
+
+CREATE TABLE public.data_spot_impr (
+    spot_id integer NOT NULL,
+    spot_area text,
+    spot_name text,
+    spot_latitude real,
+    spot_longitude real,
+    spot_elevation integer,
+    spot_history_culture integer,
+    spot_nature integer,
+    spot_view integer,
+    spot_opentime integer,
+    spot_closetime integer,
+    spot_recommend_time integer
+);
+
+
+ALTER TABLE public.data_spot_impr OWNER TO sawda;
+
+--
+-- Name: data_spot_impr_spot_id_seq; Type: SEQUENCE; Schema: public; Owner: sawda
+--
+
+CREATE SEQUENCE public.data_spot_impr_spot_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.data_spot_impr_spot_id_seq OWNER TO sawda;
+
+--
+-- Name: data_spot_impr_spot_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sawda
+--
+
+ALTER SEQUENCE public.data_spot_impr_spot_id_seq OWNED BY public.data_spot_impr.spot_id;
+
+
+--
+-- Name: data_spot_spot_id_seq; Type: SEQUENCE; Schema: public; Owner: sawda
+--
+
+CREATE SEQUENCE public.data_spot_spot_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.data_spot_spot_id_seq OWNER TO sawda;
+
+--
+-- Name: data_spot_spot_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: sawda
+--
+
+ALTER SEQUENCE public.data_spot_spot_id_seq OWNED BY public.data_spot.spot_id;
+
+
+--
+-- Name: data_spot spot_id; Type: DEFAULT; Schema: public; Owner: sawda
+--
+
+ALTER TABLE ONLY public.data_spot ALTER COLUMN spot_id SET DEFAULT nextval('public.data_spot_spot_id_seq'::regclass);
+
+
+--
+-- Name: data_spot_impr spot_id; Type: DEFAULT; Schema: public; Owner: sawda
+--
+
+ALTER TABLE ONLY public.data_spot_impr ALTER COLUMN spot_id SET DEFAULT nextval('public.data_spot_impr_spot_id_seq'::regclass);
+
+
+--
+-- Data for Name: data_spot; Type: TABLE DATA; Schema: public; Owner: sawda
+--
+
+COPY public.data_spot (spot_id, spot_area, spot_name, spot_latitude, spot_longitude, spot_history_culture, spot_nature, spot_view, spot_1_high_temperature, spot_1_low_temperature, spot_opentime, spot_closetime) FROM stdin;
+1	長野	白馬五竜スキー場	36.6628724	137.8364952	0	1	1	1	-8	8	17
+2	長野	HAKUBA MOUNTAIN HARBOR	36.7316592	137.8387956	0	1	1	1	-7	9	17
+3	長野	白馬ジャンプ競技場	36.6941059	137.8382102	1	0	1	3	-5	8	17
+\.
+
+
+--
+-- Data for Name: data_spot_impr; Type: TABLE DATA; Schema: public; Owner: sawda
+--
+
+COPY public.data_spot_impr (spot_id, spot_area, spot_name, spot_latitude, spot_longitude, spot_elevation, spot_history_culture, spot_nature, spot_view, spot_opentime, spot_closetime, spot_recommend_time) FROM stdin;
+1	東京	高尾山	35.625454	139.75768	599	0	1	1	10	16	6
+2	鳥取	鳥取砂丘	35.54173	134.22987	0	0	1	1	8	17	1
+3	東京	築地本願寺	35.66763	139.77211	2	1	0	1	6	16	2
+4	東京	羽田空港	35.543785	139.76639	11	1	0	1	0	24	4
+5	千葉	東京ドイツ村	35.405167	140.06038	60	0	1	1	10	17	5
+\.
+
+
+--
+-- Name: data_spot_impr_spot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sawda
+--
+
+SELECT pg_catalog.setval('public.data_spot_impr_spot_id_seq', 5, true);
+
+
+--
+-- Name: data_spot_spot_id_seq; Type: SEQUENCE SET; Schema: public; Owner: sawda
+--
+
+SELECT pg_catalog.setval('public.data_spot_spot_id_seq', 3, true);
+
+
+--
+-- Name: data_spot_impr data_spot_impr_pkey; Type: CONSTRAINT; Schema: public; Owner: sawda
+--
+
+ALTER TABLE ONLY public.data_spot_impr
+    ADD CONSTRAINT data_spot_impr_pkey PRIMARY KEY (spot_id);
+
+
+--
+-- Name: data_spot data_spot_pkey; Type: CONSTRAINT; Schema: public; Owner: sawda
+--
+
+ALTER TABLE ONLY public.data_spot
+    ADD CONSTRAINT data_spot_pkey PRIMARY KEY (spot_id);
+
+
+--
+-- PostgreSQL database dump complete
+--
+
